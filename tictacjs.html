@@ -140,12 +140,12 @@
       //
       // Return true if placed (spot was empty); false if not placed (spot already full)
 
-      // if (board[cellNumber] === null) {
+      if (board[cellNumber] === null) {
           board[cellNumber] = pieceType;
           return true;
-      // }
+       }
 
-      // return false;
+       return false;
   }
 
 
@@ -153,9 +153,9 @@
       // Make next possible move for the computer
 
       for (var i = 0; i < 9; i++) {
-          if (i === 3 || i === 7){
-              board[i] = "O";
-              return board;
+           if (i === 3 || i === 7){
+               board[i] = "O";
+               return board;
           }
           if (board[i] === null) {
               board[i] = "O";
@@ -240,3 +240,4 @@
 
 </body>
 </html>
+

@@ -13,6 +13,10 @@ afterAll(async () => {
     await driver.quit()
 })
 
+// beforeEach(async () => {
+
+// })
+
 test('I can start a game', async () => {
 
     let button = await (await driver).findElement(By.id('start-game'));
@@ -21,40 +25,65 @@ test('I can start a game', async () => {
 });
 
 test('Can X be put in the top left?', async () => {
-
-    let x1 = await (await driver).findElement(By.id('cell-0'))
-    await x1.click()
-})
+    await driver.sleep(200)
+    let topLeft = await driver.findElement(By.id('cell-0'))
+    await topLeft.click()
+    let topLeftText = await topLeft.getText()
+    expect(topLeftText).toEqual('X')
+});
 
 test('Can X be put in the top right?', async () => {
-
-    let x2 = await (await driver).findElement(By.id('cell-2'))
-    await x2.click()
-})
+    await driver.sleep(200)
+    let topRight = await driver.findElement(By.id('cell-2'))
+    await topRight.click()
+    let topRightText = await topRight.getText()
+    expect(topRightText).toEqual('X')
+});
 
 test('Can X be put in the bottom right?', async () => {
-
-    let x3 = await (await driver).findElement(By.id('cell-8'))
-    await x3.click()
-})
+    await driver.sleep(200)
+    let bottomRight = await driver.findElement(By.id('cell-8'))
+    await bottomRight.click()
+    let bottomRightText = await bottomRight.getText()
+    expect(bottomRightText).toEqual('X')
+});
 
 test('Check for winner', async () => {
     
-    let check = await (await driver).findElement(By.id('h1', === " lost"))
+    let check = await (await driver).findElement(By.id('h1'))
     await check.click()
+    await driver.findElement(By.id('cell-0'))
+    await driver.findElement(By.id('cell-3'))
+    await driver.findElement(By.id('cell-6'))
+    expect(check).toEqual('X Won')
 })
 // Changed it to won so that it would look better when deployed^
 
-test('Check O', async () => {
+// test('Check O', async () => {
 
-    let O = await (await driver).findElement(By.id('cell-3', "o"))
-    await O.click()
-})
+//     let O = await (await driver).findElement(By.id('cell-3'))
+//     await O.click()
+
+//     expect(O).toBe('O')
+//})
 // Changed it to uppercase "O" for uniformity
 
-test('Look for covers!', async () => {
+// test('Look for covers!', async () => {
 
-    let xo = await (await driver).findElement(By.(''))
-    await xo.click()
-})
-// Little stuck here not sure how to check for it
+//     const displayText = await (await driver).findElement(By.xpath('//h1')).getText()
+    
+//     expect(displayText).toBe('X Won')
+// })
+// Little stuck here
+
+
+// Function from N8
+// function resetGame(evt) {
+
+    // $('#game-board td').load(location.href + ' game-board td')
+    // $("h1").text("Tic Tac JS")
+    // initializeBoard()
+    // hideResetButton()
+    // $('#game-board td').on('click', handleClick);
+
+    // }
